@@ -5,7 +5,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(process.env.DB_URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("mongoose conectado"))
   .catch((err) => console.log(err));
 
