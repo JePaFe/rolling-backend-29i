@@ -1,15 +1,36 @@
 const express = require("express");
 const router = express.Router();
 
+const jwt = require("jsonwebtoken");
+
 const Producto = require("../models/Producto");
+const User = require("../models/User");
 
 router.get("/productos", async (req, res) => {
   try {
+    // console.log(req.headers);
+
+    const { authorization } = req.headers;
+
+    // console.log(authorization.split(" "));
+
+    const token = authorization.split(" ").pop();
+
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+
+    // console.log(payload);
+
+    const { uid } = payload;
+
     const productos = await Producto.find();
+
+    const user = User.findById(uid);
+
     // console.log(productos);
-    res.json(productos);
+    res.json(productos, user);
   } catch (err) {
     console.log(err);
+    return res.status(401).json({ error: err.message });
   }
 });
 

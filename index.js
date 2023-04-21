@@ -15,6 +15,9 @@ mongoose
 // saludar();
 // console.log(mensaje);
 
+const cors = require("cors");
+app.use(cors());
+
 app.use(express.json()); // req.body
 
 app.get("/", (req, res) => {

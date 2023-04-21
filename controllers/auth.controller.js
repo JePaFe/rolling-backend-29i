@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -20,7 +21,11 @@ const login = async (req, res) => {
         .json({ error: "El correo y/o la contraseña son incorrectos" });
     }
 
-    res.json({ login: true, userId: user.id });
+    const token = jwt.sign({ uid: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.json({ login: true, userId: user.id, token });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }

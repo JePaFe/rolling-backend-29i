@@ -18,7 +18,9 @@ router.post(
       .notEmpty()
       .withMessage("El password es requerido")
       .isLength(5)
-      .withMessage("El password tiene que tener 5 caracteres o mas"),
+      .withMessage("El password tiene que tener 5 caracteres o mas")
+      .custom((value, { req }) => value === req.body.password_confirmation)
+      .withMessage("La contraseñas no coinciden"),
   ],
   register
 );
