@@ -6,6 +6,7 @@ const schema = new Schema({
     required: true,
   },
   descripcion: String,
+  imagen: String,
   precio: {
     type: Number,
     required: true,

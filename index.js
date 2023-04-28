@@ -16,9 +16,12 @@ mongoose
 // console.log(mensaje);
 
 const cors = require("cors");
-app.use(cors());
 
+app.use(express.urlencoded({ extended: false })); // req.body
+app.use(express.static("public"));
 app.use(express.json()); // req.body
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hola");
