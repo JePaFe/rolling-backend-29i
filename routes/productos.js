@@ -33,7 +33,7 @@ router.get("/productos", async (req, res) => {
 
     // const { uid } = payload;
 
-    const productos = await Producto.find();
+    const productos = await Producto.find().limit;
 
     // const user = User.findById(uid);
 

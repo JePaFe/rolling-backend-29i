@@ -15,12 +15,17 @@ mongoose
 // saludar();
 // console.log(mensaje);
 
-const cors = require("cors");
-
 app.use(express.urlencoded({ extended: false })); // req.body
 app.use(express.static("public"));
 app.use(express.json()); // req.body
 
+const cors = require("cors");
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     // methods: ["GET", "POST"],
+//   })
+// );
 app.use(cors());
 
 app.get("/", (req, res) => {
