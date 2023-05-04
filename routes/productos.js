@@ -24,16 +24,15 @@ router.get("/productos", async (req, res) => {
     // const { authorization } = req.headers;
 
     // console.log(authorization.split(" "));
-
     // const token = authorization.split(" ").pop();
 
-    // const payload = jwt.verify(token, process.env.JWT_SECRET);
+    // const payload = jwt.verify(authorization, process.env.JWT_SECRET);
 
     // console.log(payload);
 
     // const { uid } = payload;
 
-    const productos = await Producto.find().limit;
+    const productos = await Producto.find();
 
     // const user = User.findById(uid);
 
